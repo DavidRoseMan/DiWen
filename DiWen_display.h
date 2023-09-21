@@ -7,6 +7,8 @@ void myDisplayIcon(Uart_type *uart_use, uint x, uint y, uchar Lib_ID, uchar mode
 void myDisplayString(Uart_type *uart_use, uint x, uint y, uchar Lib_ID, uchar mode,
                      uchar Dots, uint Fcolor, uint Bcolor, char *Strings, ...) reentrant;
 void myDiWinBuzz(Uart_type *uart_use, uchar length);
+void myDisplayString_setdigits(Uart_type *uart_use, uint x, uint y, uchar Lib_ID, uchar mode,
+                               uchar Dots, uint Fcolor, uint Bcolor, char *Strings, ...) reentrant;
 
 #endif
 
