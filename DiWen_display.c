@@ -110,3 +110,30 @@ void myDiWinBuzz(Uart_type *uart_use, uchar length)
     sendbyte_UART(uart_use, 0xC3);
     sendbyte_UART(uart_use, 0x3C);
 }
+
+void myDisplayString_setdigits(Uart_type *uart_use, uint x, uint y, uchar Lib_ID, uchar mode,
+                               uchar Dots, uint Fcolor, uint Bcolor, char *Strings, ...) reentrant
+{
+    va_list ap;
+
+    sendbyte_UART(uart_use, 0xAA);
+    sendbyte_UART(uart_use, 0x98);
+    sendbyte_UART(uart_use, x >> 8);
+    sendbyte_UART(uart_use, x >> 0);
+    sendbyte_UART(uart_use, y >> 8);
+    sendbyte_UART(uart_use, y >> 0);
+    sendbyte_UART(uart_use, Lib_ID);
+    sendbyte_UART(uart_use, mode);
+    sendbyte_UART(uart_use, Dots);
+    sendbyte_UART(uart_use, Fcolor >> 8);
+    sendbyte_UART(uart_use, Fcolor >> 0);
+    sendbyte_UART(uart_use, Bcolor >> 8);
+    sendbyte_UART(uart_use, Bcolor >> 0);
+    va_start(ap, Strings);
+    vmyprintf_setdigits(uart_use, Strings, ap);
+    va_end(ap);
+    sendbyte_UART(uart_use, 0xCC);
+    sendbyte_UART(uart_use, 0x33);
+    sendbyte_UART(uart_use, 0xC3);
+    sendbyte_UART(uart_use, 0x3C);
+}
